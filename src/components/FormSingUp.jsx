@@ -1,13 +1,27 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
+
 import { Button, TextField, Switch, FormGroup, FormControlLabel } from '@mui/material'
 
-function FormSingUp() {
+function FormSingUp({ handleSubmit }) {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
+  const [promocion, setPromocion] = useState(false)
+  const [novedad, setNovedad] = useState(false)
 
   return (
-    <form action=''>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        handleSubmit({
+          firstName,
+          lastName,
+          email,
+          promocion,
+          novedad,
+        })
+      }}>
       <TextField
         id='name'
         label='Nombre'
@@ -39,17 +53,35 @@ function FormSingUp() {
       />
       <FormGroup>
         <FormControlLabel
-          control={<Switch />}
+          control={
+            <Switch
+              checked={promocion}
+              onChange={(e) => setPromocion(e.target.checked)}
+            />
+          }
           label='Promociones'
         />
         <FormControlLabel
-          control={<Switch />}
+          control={
+            <Switch
+              checked={novedad}
+              onChange={(e) => setNovedad(e.target.checked)}
+            />
+          }
           label='Novedades'
         />
       </FormGroup>
-      <Button variant='contained'>Registrarse</Button>
+      <Button
+        type='submit'
+        variant='contained'>
+        Registrarse
+      </Button>
     </form>
   )
+}
+
+FormSingUp.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
 }
 
 export default FormSingUp
