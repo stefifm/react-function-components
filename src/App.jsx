@@ -3,6 +3,9 @@ import FormSingUp from './components/FormSingUp'
 import { Container, Typography } from '@mui/material'
 
 function App() {
+  const handleSubmit = (valores) => {
+    console.log(valores)
+  }
   return (
     <Container maxWidth='sm'>
       <Typography
@@ -10,7 +13,7 @@ function App() {
         align='center'>
         Formulario Registro
       </Typography>
-      <FormSingUp />
+      <FormSingUp handleSubmit={handleSubmit} />
     </Container>
   )
 }
