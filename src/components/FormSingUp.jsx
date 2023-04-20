@@ -1,6 +1,11 @@
+import { useState } from 'react'
 import { Button, TextField, Switch, FormGroup, FormControlLabel } from '@mui/material'
 
 function FormSingUp() {
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+
   return (
     <form action=''>
       <TextField
@@ -9,6 +14,10 @@ function FormSingUp() {
         variant='outlined'
         fullWidth
         margin='normal'
+        onChange={(e) => {
+          setFirstName(e.target.value)
+        }}
+        value={firstName}
       />
       <TextField
         id='lastName'
@@ -16,6 +25,8 @@ function FormSingUp() {
         variant='outlined'
         fullWidth
         margin='normal'
+        onChange={(e) => setLastName(e.target.value)}
+        value={lastName}
       />
       <TextField
         id='email'
@@ -23,6 +34,8 @@ function FormSingUp() {
         variant='outlined'
         fullWidth
         margin='normal'
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
       />
       <FormGroup>
         <FormControlLabel
